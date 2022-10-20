@@ -49,7 +49,10 @@ public class UserService {
     public String saveUser(User user){
 
         User savedUser= userRepository.save(user);
-        return tokenService.createToken(savedUser.getId());
+        return "\"message\": \"Successfully Created User\",\n" +
+                "\"User Data\" :\n\tId : "+ user.getId()+"\n\tName : "+user.getName()+"\n\tEmail : "+user.getEmail()+"\n\tPassword : "+user.getPassword()+",\n"+
+                 "\"token\": " +
+        tokenService.createToken(savedUser.getId())   ;
     }
 //hi
 }
