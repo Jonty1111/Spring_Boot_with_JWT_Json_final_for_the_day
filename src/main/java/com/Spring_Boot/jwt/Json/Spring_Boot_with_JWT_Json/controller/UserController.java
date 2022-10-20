@@ -28,12 +28,23 @@ public class UserController {
     }
 
 
-    @GetMapping("/getUser/{userid}")
-    public User getUserDetails(@PathVariable ObjectId userid )
+
+    //Method-1
+    @GetMapping("/getUserMethod1/{userid}")
+    public User getUserDetailsMethod1(@PathVariable ObjectId userid )
     {
-        //ObjectId userId=(ObjectId)httpServletRequest.getAttribute("userId" );
+       // ObjectId userId=(ObjectId)httpServletRequest.getAttribute("userId" );
         return userService.getUser(userid);
     }
+
+    //Method-2
+    @GetMapping("/getUser")
+    public User getUserDetailsMethod2(HttpServletRequest httpServletRequest)
+    {
+        ObjectId userId=(ObjectId)httpServletRequest.getAttribute("userId" );
+        return userService.getUser(userId);
+    }
+
 
 
 
