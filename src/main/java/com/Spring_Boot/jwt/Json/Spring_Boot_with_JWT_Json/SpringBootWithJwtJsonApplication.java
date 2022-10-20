@@ -9,5 +9,5 @@ public class SpringBootWithJwtJsonApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootWithJwtJsonApplication.class, args);
 	}
-
+	//
 }
