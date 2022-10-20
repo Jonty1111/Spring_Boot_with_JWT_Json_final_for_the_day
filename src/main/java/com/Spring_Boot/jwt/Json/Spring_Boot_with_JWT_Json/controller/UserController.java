@@ -28,7 +28,8 @@ public class UserController {
     }
 
 
-
+    //
+    /*
     //Method-1
     @GetMapping("/getUserMethod1/{userid}")
     public User getUserDetailsMethod1(@PathVariable ObjectId userid )
@@ -36,6 +37,8 @@ public class UserController {
        // ObjectId userId=(ObjectId)httpServletRequest.getAttribute("userId" );
         return userService.getUser(userid);
     }
+
+     */
 
     //Method-2
     @GetMapping("/getUser")
