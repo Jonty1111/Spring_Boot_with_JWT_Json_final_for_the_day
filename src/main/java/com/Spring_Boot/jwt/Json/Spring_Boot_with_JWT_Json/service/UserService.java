@@ -12,13 +12,24 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    //here we did autowiring on field level
-    @Autowired
-    private UserRepository userRepository;
+    //here we can do AutoWiring on field level Yaa On Constructor Level
 
-    //here we also can do autowiring on constructor level
+    private UserRepository userRepository;
+    private TokenService tokenService;
+
+    /*
+    //Initially Yeah Tha
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+
+    }
+    */
+
+    @Autowired
+    public UserService(UserRepository userRepository,TokenService tokenService) {
+        this.userRepository = userRepository;
+        this.tokenService=tokenService;
     }
 
     public User getUser(ObjectId userid){
@@ -26,10 +37,19 @@ public class UserService {
         return result.orElseGet(result::get);
     }
 
+    /*
+    //This is method for saving User Without Token
     public String saveUser(User user){
 
-         userRepository.save(user);
-         return "Successfully Created User";
+        userRepository.save(user);
+        return "Successfully Created User";
+    }*/
+
+    //In this after saving user, Token is generated
+    public String saveUser(User user){
+
+        User savedUser= userRepository.save(user);
+        return tokenService.createToken(savedUser.getId());
     }
 
 }
